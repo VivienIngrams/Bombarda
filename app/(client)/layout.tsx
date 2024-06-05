@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Lato, Quicksand } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import {Provider} from "./utils/Provider";
+import Navbar from "../components/Navbar";
+import {Provider} from "../utils/Provider";
 
-const quickSand = Quicksand({ subsets: ["latin"], weight: ["300", "400", "500", "700"]});
 
 const lato = Lato({
   subsets: ["latin"],

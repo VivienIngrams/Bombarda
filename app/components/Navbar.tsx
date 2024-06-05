@@ -12,7 +12,7 @@ const Navbar = () => {
         <Link href="/">
           <div>Bombarda</div>
         </Link>
-      <ThemeSwitch />
+        <ThemeSwitch />
       </div>
     </div>
   );

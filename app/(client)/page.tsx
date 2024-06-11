@@ -3,15 +3,18 @@ import { client } from "../../sanity/lib/client";
 import Header from "../components/Header";
 import { data } from "../data";
 import { Post } from "../utils/Interface";
+import PostComponent from "../components/PostComponent";
 
 async function getPosts() {
   const query = `*[_type == "post"]{
   title,
   slug,
-  excerpt,
+  description,
   mainImage,
-  publishedAt,
-  tags
+  category,
+  address,
+  WKT,
+    tags
 }`;
   const posts = await client.fetch(query);
   return posts;
@@ -22,12 +25,10 @@ export default async function Home() {
 const posts: Post[] = data;
   return (
     <div>
+      <Header title="Category"/>
       {posts.length > 0 &&
         posts.map((post: Post) => (
-          <div key={post.slug}>
-            <h2>{post.title}</h2>
-            <p>{post.description}</p>
-          </div>
+          <PostComponent key={post.slug} post={post} />
         ))}
     </div>
   );

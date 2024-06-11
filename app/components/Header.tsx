@@ -5,7 +5,7 @@ interface Props {
 }
 
 
-const Header = ({ title = ""}: Props) => {
+const Header = ({ title }: Props) => {
   return (
     <header className='my-4 mx-10 '>
         <h2>{title}</h2>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Quicksand } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import {Provider} from "../utils/Provider";

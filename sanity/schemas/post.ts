@@ -21,10 +21,13 @@ export const post = {
       },
     },
     {
-        name: 'excerpt',
-        title: 'Excerpt',
-        type: 'text',
-        validation: (Rule: Rule) => Rule.max(200).required().error('Excerpt is required, max 200 characters'),
+      name: "description",
+      title: "Description",
+      type: "text",
+      validation: (Rule: Rule) =>
+        Rule.max(200)
+          .required()
+          .error("Excerpt is required, max 200 characters"),
     },
     {
       name: "mainImage",
@@ -35,17 +38,28 @@ export const post = {
       },
     },
     {
-        name: 'tags',
-        title: 'Tags',
-        type: 'array',
-        of: [{ type: 'reference', to: { type: 'tag' } }],
+      name: "address",
+      title: "Address",
+      type: "string",
     },
     {
-      name: "publishedAt",
-      title: "Published at",
-      type: "datetime",
-      initialValue: () => new Date().toISOString(),
+      name: "WKT",
+      title: "WKT",
+      type: "string",
     },
+    {
+      name: "category",
+      title: "Category",
+      type: "array",
+      of: [{ type: "reference", to: { type: "category" } }],
+    },
+    {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "reference", to: { type: "tag" } }],
+    },
+
     {
       name: "body",
       title: "Body",

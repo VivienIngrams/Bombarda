@@ -22,10 +22,10 @@ async function getPosts() {
 
 export default async function Home() {
   // const posts: Post[] = await getPosts();
-const posts: Post[] = data;
+  const posts: Post[] = data;
   return (
     <div>
-      <Header title="Category"/>
+      <Header title="Category" />
       {posts.length > 0 &&
         posts.map((post: Post) => (
           <PostComponent key={post.slug} post={post} />

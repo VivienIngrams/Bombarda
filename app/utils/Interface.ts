@@ -3,7 +3,7 @@ export interface Post {
     // slug: {current: string;}
     slug: string;
     description: string;
-    mainImage: string;
+    mainImage?: {};
     tags: string[];
     category: string;
     body: any;

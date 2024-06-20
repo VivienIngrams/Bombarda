@@ -11,12 +11,12 @@ const PostComponent = ({post}: Props) => {
   return (
     <div className="my-8">
       <Link href={`/posts/${post?.slug}`}>
-      <h2>{post?.title}</h2></Link>
-        <p>{post?.description}</p>
-        <p>{post?.category}</p> 
-        <p>{post?.address}</p>
-        <p>{post?.WKT}</p>
-        <p>{post?.tags}</p>
+      <h2>Title: {post?.title}</h2></Link>
+        <p>Description: {post?.description}</p>
+        <p>Category: {post?.category}</p> 
+        <p>Address: {post?.address}</p>
+        <p>Google map coordinates: {post?.WKT}</p>
+        <p>Tags: {post?.tags}</p>
         {/* <Image
           src={post?.mainImage}
           alt={post?.title}

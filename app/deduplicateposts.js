@@ -1,5 +1,7 @@
 const createClient = require('next-sanity').createClient;
 
+const { dataset, projectId, token } = require('../env');
+
 const client = createClient({
   projectId: 'vzs4gtg1',
   dataset: 'production',

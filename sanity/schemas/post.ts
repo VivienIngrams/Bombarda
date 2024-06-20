@@ -29,14 +29,14 @@ export const post = {
           .required()
           .error("Excerpt is required, max 200 characters"),
     },
-    {
-      name: "mainImage",
-      title: "Main image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-    },
+    // {
+    //   name: "mainImage",
+    //   title: "Main image",
+    //   type: "image",
+    //   options: {
+    //     hotspot: true,
+    //   },
+    // },
     {
       name: "address",
       title: "Address",
@@ -60,44 +60,44 @@ export const post = {
       of: [{ type: "reference", to: { type: "tag" } }],
     },
 
-    {
-      name: "body",
-      title: "Body",
-      type: "array",
-      of: [
-        { type: "block" },
-        {
-          type: "image",
-          fields: [
-            {
-              title: "Position",
-              name: "position",
-              type: "string",
-              options: {
-                list: [
-                  { title: "Center", value: "center" },
-                  { title: "Left", value: "left" },
-                  { title: "Right", value: "right" },
-                ],
-                layout: "radio",
-                isHighlighted: true,
-              },
-            },
-            {
-              title: "Image",
-              name: "image",
-              type: "image",
-              options: {
-                hotspot: true,
-              },
-            },
-          ],
-          options: {
-            hotspot: true,
-          },
-        },
-      ],
-    },
+    // {
+    //   name: "body",
+    //   title: "Body",
+    //   type: "array",
+    //   of: [
+    //     { type: "block" },
+    //     {
+    //       type: "image",
+    //       fields: [
+    //         {
+    //           title: "Position",
+    //           name: "position",
+    //           type: "string",
+    //           options: {
+    //             list: [
+    //               { title: "Center", value: "center" },
+    //               { title: "Left", value: "left" },
+    //               { title: "Right", value: "right" },
+    //             ],
+    //             layout: "radio",
+    //             isHighlighted: true,
+    //           },
+    //         },
+    //         {
+    //           title: "Image",
+    //           name: "image",
+    //           type: "image",
+    //           options: {
+    //             hotspot: true,
+    //           },
+    //         },
+    //       ],
+    //       options: {
+    //         hotspot: true,
+    //       },
+    //     },
+    //   ],
+    // },
   ],
   preview: {
     select: {

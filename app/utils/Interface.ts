@@ -4,12 +4,17 @@ export interface Post {
     slug: string;
     description: string;
     mainImage?: {};
-    tags: string[];
+    tags: Tag[];
     category: string;
     body: any;
     address: string;
     WKT: string;
     }
+
+export interface Tag {
+    slug: {current: string;}
+    name: string;
+}
 
 export interface Category {
     title: string;

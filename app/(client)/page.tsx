@@ -14,7 +14,7 @@ async function getPosts() {
     "category": category[0]->name,
     address,
     WKT,
-    "tags": tags[]->name,
+    tags[]->{slug,name},
   }`;
   const options = {
     next: {
@@ -29,7 +29,7 @@ async function getPosts() {
 export default async function Home() {
   const posts: Post[] = await getPosts();
   // const posts: Post[] = data;
-  console.log(posts);
+  // console.log(posts);
   return (
     <div>
       <Header title="Category" />

@@ -16,7 +16,10 @@ const PostComponent = ({post}: Props) => {
         <p>Category: {post?.category}</p> 
         <p>Address: {post?.address}</p>
         <p>Google map coordinates: {post?.WKT}</p>
-        <p>Tags: {post?.tags}</p>
+        <p>Tags: {post?.tags?.map((tag) => {
+          return <span className="mr-2 p-1 text-small border rounded-sm border-1 " key={tag.slug.current}>#{tag.name}</span>
+        
+        })}</p>
         {/* <Image
           src={post?.mainImage}
           alt={post?.title}

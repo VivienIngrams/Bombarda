@@ -14,6 +14,7 @@ export interface Post {
 export interface Tag {
     slug: {current: string;}
     name: string;
+    postCount?: number;
 }
 
 export interface Category {

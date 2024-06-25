@@ -59,45 +59,18 @@ export const post = {
       type: "array",
       of: [{ type: "reference", to: { type: "tag" } }],
     },
-
-    // {
-    //   name: "body",
-    //   title: "Body",
-    //   type: "array",
-    //   of: [
-    //     { type: "block" },
-    //     {
-    //       type: "image",
-    //       fields: [
-    //         {
-    //           title: "Position",
-    //           name: "position",
-    //           type: "string",
-    //           options: {
-    //             list: [
-    //               { title: "Center", value: "center" },
-    //               { title: "Left", value: "left" },
-    //               { title: "Right", value: "right" },
-    //             ],
-    //             layout: "radio",
-    //             isHighlighted: true,
-    //           },
-    //         },
-    //         {
-    //           title: "Image",
-    //           name: "image",
-    //           type: "image",
-    //           options: {
-    //             hotspot: true,
-    //           },
-    //         },
-    //       ],
-    //       options: {
-    //         hotspot: true,
-    //       },
-    //     },
-    //   ],
-    // },
+    {
+      name: "body",
+      title: "Body",
+      type: "array",
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          fields: [{ type: "text", name: "alt", title: "Alt" }],
+        },
+      ],
+    },
   ],
   preview: {
     select: {

@@ -55,10 +55,10 @@ const Posts = async ({ params }: Params) => {
         <p className="mb-4">Address: {post?.address}</p>
         <p className="mb-4">Google map coordinates: {post?.WKT}</p>
         <div className="mb-8">
-          Tags:
+          <Link href="/tags">Tags:</Link>
           {post?.tags?.map((tag: Tag) => {
             return (
-              <Link href={`/tag/${tag.slug.current}`} key={tag.slug.current}>
+              <Link href={`/tags/${tag.slug.current}`} key={tag.slug.current}>
                 <span className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">
                   #{tag.name}
                 </span>

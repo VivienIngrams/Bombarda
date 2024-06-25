@@ -25,7 +25,7 @@ const Tags = async () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {tags?.length > 0 &&
           tags?.map((tag) => (
-            <Link key={tag?._id} href={`/tag/${tag.slug.current}`}>
+            <Link key={tag?._id} href={`/tags/${tag.slug.current}`}>
               <div className="mb-2 px-3 py-1 text-sm lowercase dark:bg-gray-950 border dark:border-gray-900 hover:text-sky-500 inline-block rounded">
                 #{tag.name} ({tag?.postCount})
               </div>

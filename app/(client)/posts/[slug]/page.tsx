@@ -52,9 +52,9 @@ console.log(post)
         <p className="text-lg mb-4">{post?.description}</p>
         <div className="mb-4">
           Category:
-          <Link href={`/categories/${post?.category.slug.current}`}>
+          <Link href={`/categories/${post?.category?.slug.current}`}>
             <span className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">
-              #{post?.category.name}
+              #{post?.category?.name}
             </span>
           </Link>
         </div>

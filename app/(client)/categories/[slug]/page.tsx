@@ -38,7 +38,7 @@ const page = async ({ params }: Params) => {
 
   return (
     <div>
-      <Header title={`#${params?.slug}`} tags={true} categories={true} />
+      <Header title={`#${posts[0].category?.name}`} tags={true} categories={true} />
       <div>
         {posts?.length > 0 &&
           posts?.map((post: Post, index) => (

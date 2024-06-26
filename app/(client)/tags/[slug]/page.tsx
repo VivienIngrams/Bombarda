@@ -13,7 +13,7 @@ async function getPostsByTag(tags: string) {
     description,
     tag[]-> {
       slug,
-      name
+      title
     }
   }
   `;

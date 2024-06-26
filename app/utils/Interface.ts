@@ -1,6 +1,5 @@
 export interface Post {
     title: string;
-    // slug: {current: string;}
     slug: string;
     description: string;
     mainImage?: {};
@@ -13,18 +12,12 @@ export interface Post {
 
 export interface Tag {
     slug: {current: string;}
-    name: string;
+    title: string;
     postCount?: number;
 }
 
 export interface Category {
     title: string;
     slug: {current: string;}
-    _id: string;
-}
-
-export interface Tag {
-    title: string;
-    slug: {current: string;}
-    _id: string;
+    postCount?: number;
 }

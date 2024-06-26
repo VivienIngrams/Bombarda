@@ -18,7 +18,7 @@ export const revalidate = 60;
 
 const Tags = async () => {
   const tags: Tag[] = await getTags();
-  // console.log(tags);
+
   return (
     <div>
       <Header title="Tags" />

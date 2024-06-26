@@ -32,10 +32,10 @@ export default async function Home() {
   // console.log(posts);
   return (
     <div>
-      <Header title="Category" />
+      <Header title="Category" tags />
       {posts.length > 0 &&
         posts.map((post: Post, index) => (
-          <PostComponent key={index} post={post} />
+          <PostComponent key={index} post={post}  />
         ))}
     </div>
   );

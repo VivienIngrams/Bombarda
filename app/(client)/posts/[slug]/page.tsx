@@ -1,4 +1,3 @@
-import Header from "@/app/components/Header";
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import { Post, Tag } from "../../../utils/Interface";
@@ -6,6 +5,7 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 interface Params {
   params: {
@@ -37,7 +37,12 @@ async function getSinglePost(slug: string) {
 
 const Posts = async ({ params }: Params) => {
   const post: Post = await getSinglePost(params.slug);
-  console.log(post.title);
+
+
+  if (!post) {
+   notFound();
+  }
+
   return (
     <div className="max-w-4xl mx-auto p-4">
       {/* <Header title="Dynamic Posts Page" /> */}

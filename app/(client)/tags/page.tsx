@@ -6,7 +6,7 @@ import Link from "next/link";
 
 async function getTags() {
   const query = `*[_type == "tag"] {
-    title,
+    name,
     slug,
     "postCount": count(*[_type == "post" && references("tags", ^._id)])
     }`;
@@ -21,13 +21,13 @@ const Tags = async () => {
 
   return (
     <div>
-      <Header title="Tags" />
+      <Header title="Tags" categories/>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {tags?.length > 0 &&
           tags?.map((tag, index) => (
             <Link key={index} href={`/tags/${tag.slug.current}`}>
               <div className="mb-2 px-3 py-1 text-sm lowercase dark:bg-gray-950 border dark:border-gray-900 hover:text-sky-500 inline-block rounded">
-                #{tag.title} ({tag?.postCount})
+                #{tag.name} ({tag?.postCount})
               </div>
             </Link>
           ))}

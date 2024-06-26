@@ -6,6 +6,7 @@ import { PortableText } from "next-sanity";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Header from "@/app/components/Header";
 
 interface Params {
   params: {
@@ -19,7 +20,7 @@ async function getSinglePost(slug: string) {
         "slug": slug.current,
         description,
         mainImage,
-        "category": category[0]->name,
+        "category": category[0]->{slug, name},
         address,
         body,
         WKT,
@@ -42,18 +43,18 @@ const Posts = async ({ params }: Params) => {
   if (!post) {
    notFound();
   }
-
+console.log(post)
   return (
     <div className="max-w-4xl mx-auto p-4">
-      {/* <Header title="Dynamic Posts Page" /> */}
+      <Header title="" tags categories />
       <h2 className="text-3xl font-bold text-center mt-8 mb-4">{post.title}</h2>
       <div className="text-center mb-8">
         <p className="text-lg mb-4">{post?.description}</p>
         <div className="mb-4">
-          Category:{" "}
-          <Link href={`/category/${post?.category}`} key={post?.category}>
+          Category:
+          <Link href={`/categories/${post?.category.slug.current}`}>
             <span className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">
-              #{post?.category}
+              #{post?.category.name}
             </span>
           </Link>
         </div>

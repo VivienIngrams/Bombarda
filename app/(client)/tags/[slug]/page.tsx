@@ -11,10 +11,9 @@ async function getPostsByTag(tags: string) {
     title,
    "slug": slug.current,
     description,
-    tag[]-> {
-      slug,
-      title
-    }
+    "category": category[0]->{slug, name},
+    address,
+   tags[]->{slug,name},
   }
   `;
 
@@ -39,7 +38,7 @@ const page = async ({ params }: Params) => {
 
   return (
     <div>
-      <Header title={`#${params?.slug}`} tags={true} />
+      <Header title={`#${params?.slug}`} tags />
       <div>
         {posts?.length > 0 &&
           posts?.map((post: Post, index) => (

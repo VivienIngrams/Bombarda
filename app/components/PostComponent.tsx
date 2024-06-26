@@ -8,27 +8,23 @@ interface Props {
 }
 
 const PostComponent = ({post}: Props) => {
+  console.log(post.tags);
   return (
     <div className="my-8">
       <Link href={`/posts/${post?.slug}`}>
       <h2>Title: {post?.title}</h2></Link>
         <p>Description: {post?.description}</p>
-        <p>Category: {post?.category}</p> 
+        <Link href={`/categories/${post?.category?.slug.current}`}>Category: {post?.category?.name}</Link> 
         <p>Address: {post?.address}</p>
         <p>Google map coordinates: {post?.WKT}</p>
         <div>
           <Link href='/tags'>Tags:</Link>
            {post?.tags?.map((tag) => {
-          return <span className="mr-2 p-1 text-small border rounded-sm border-1 " key={tag.slug.current}>#{tag.name}</span>
+            
+          return <Link href={`/tags/${tag.slug.current}`} className="mr-2 p-1 text-small border rounded-sm border-1 " key={tag.slug.current}>#{tag.name}</Link>
         
         })}</div>
-        {/* <Image
-          src={post?.mainImage}
-          alt={post?.title}
-          width={500}
-          height={500}
-        /> */}
-    </div>
+           </div>
   );
 };
 

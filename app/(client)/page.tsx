@@ -11,7 +11,7 @@ async function getPosts() {
     "slug": slug.current,
     description,
     mainImage,
-    "category": category[0]->name,
+    "category": category[0]->{slug,name},
     address,
     WKT,
     tags[]->{slug,name},
@@ -28,11 +28,10 @@ async function getPosts() {
 
 export default async function Home() {
   const posts: Post[] = await getPosts();
-  // const posts: Post[] = data;
-  // console.log(posts);
+
   return (
     <div>
-      <Header title="Category" tags />
+      <Header title="Bombarda Quarteirão Criativo" tags categories/>
       {posts.length > 0 &&
         posts.map((post: Post, index) => (
           <PostComponent key={index} post={post}  />

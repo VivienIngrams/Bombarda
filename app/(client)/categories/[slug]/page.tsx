@@ -5,16 +5,15 @@ import { client } from "@/sanity/lib/client";
 import React from "react";
 import { notFound } from "next/navigation";
 
-async function getPostsByCategory(categories: string) {
+async function getPostsByCategory(category: string) {
   const query = `
-  *[_type == "post" && references(*[_type == "category" && slug.current == "${categories}"]._id)]{
+  *[_type == "post" && references(*[_type == "category" && slug.current == "${category}"]._id)]{
     title,
+    "category": category[0]->{slug, name},
    "slug": slug.current,
+   address,
     description,
-    category[]-> {
-      slug,
-      title
-    }
+   tags[]->{slug,name},
   }
   `;
 

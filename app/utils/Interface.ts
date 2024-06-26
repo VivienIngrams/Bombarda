@@ -3,8 +3,8 @@ export interface Post {
     slug: string;
     description: string;
     mainImage?: {};
-    tags: Tag[];
-    category: string;
+    tags?: Tag[];
+    category?: Category;
     body: any;
     address: string;
     WKT: string;
@@ -12,12 +12,12 @@ export interface Post {
 
 export interface Tag {
     slug: {current: string;}
-    title: string;
+    name: string;
     postCount?: number;
 }
 
 export interface Category {
-    title: string;
+    name: string;
     slug: {current: string;}
     postCount?: number;
 }

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Link from "next/link";
 import { Post } from "../utils/Interface";
@@ -6,33 +6,54 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 interface Props {
-    post: Post;
+  post: Post;
 }
 
-const PostComponent = ({post}: Props) => {
+const PostComponent = ({ post }: Props) => {
   const path = usePathname();
 
-  console.log(post);
+  let color = "-red-700";
+  if (post.category?.name === "Loja") {
+    color = "-green-700";
+  } else if (post.category?.name === "Arte") {
+    color = "-sky-700";
+  }
 
   return (
-    <div className="my-8">
+    <div className={`my-8 text-white rounded-2xl p-2 bg${color}`}>
       <Link href={`/posts/${post?.slug}`}>
-      <h2>Title: {post?.title}</h2></Link>
-        <p>Description: {post?.description}</p>
-         {!path.startsWith('/categories') && (
+        <div className="relative h-60 w-full rounded-xl overflow-hidden">
+        {/* //   className={`h-60 w-full ${color}  bg-white rounded-xl flex items-center justify-center`} */}
+         <Image
+         src="/bombarda.jpg"
+          alt="bombarda"
+          fill
+          className="object-cover"
+         />
+         {/* <div className={`h-6 w-18 bg${color} rounded `}>IMAGEM</div>  */}
+        </div>
+        <h3 className={`py-1 uppercase ${color}`}>{post?.title}</h3>
+        <p>{post?.description}</p>
+      </Link>
+      {/* {!path.startsWith('/categories') && (
         <Link href={`/categories/${post?.category?.slug.current}`}>
           Category: {post?.category?.name}
         </Link>
-      )}
-        {/* <p>Address: {post?.address}</p> */}
-        {/* <p>Google map coordinates: {post?.WKT}</p> */}
-        <div>
-           {post?.tags?.map((tag) => {
-            
-          return <Link href={`/tags/${tag.slug.current}`} className="mr-2 p-1 text-small border rounded-sm border-1 " key={tag.slug.current}>#{tag.name}</Link>
-        
-        })}</div>
-           </div>
+      )} */}
+      {/* <div className="flex-wrap w-full">
+        {post?.tags?.map((tag) => {
+          return (
+            <Link
+              href={`/tags/${tag.slug.current}`}
+              className="mr-2 p-1 text-small border rounded-sm border-1 "
+              key={tag.slug.current}
+            >
+              #{tag.name}
+            </Link>
+          );
+        })}
+      </div> */}
+    </div>
   );
 };
 

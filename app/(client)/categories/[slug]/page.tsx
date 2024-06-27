@@ -4,6 +4,7 @@ import { Post } from "@/app/utils/Interface";
 import { client } from "@/sanity/lib/client";
 import React from "react";
 import { notFound } from "next/navigation";
+import shuffleArray from "@/app/utils/shuffleArray";
 
 async function getPostsByCategory(category: string) {
   const query = `
@@ -33,17 +34,21 @@ const page = async ({ params }: Params) => {
   const posts: Array<Post> = await getPostsByCategory(params.slug);
 
   if (!posts) {
-  notFound();
-   }
+    notFound();
+  }
+
+  const shuffledPosts = shuffleArray(posts);
 
   return (
     <div>
       <Header title={`${posts[0].category?.name}`} tags />
       <div>
-        {posts?.length > 0 &&
-          posts?.map((post: Post, index) => (
-            <PostComponent key={index} post={post} />
-          ))}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {shuffledPosts.length > 0 &&
+                      shuffledPosts?.map((post: Post, index) => (
+              <PostComponent key={index} post={post} />
+            ))}
+        </div>
       </div>
     </div>
   );

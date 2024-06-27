@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ThemeSwitch from "./ThemeSwitch";
 import { Quicksand } from "next/font/google";
-import { FilterIcon } from "./Icons";
+import { FilterIcon, SearchIcon } from "./Icons";
 
 const quickSand = Quicksand({
   subsets: ["latin"],
@@ -19,19 +19,25 @@ const Navbar = () => {
           </div>
         </Link>
         <Link href="/categories/loja">
-          <div className={`${quickSand.className}`}>Lojas</div>
+          <div className={`bg-green-700  text-white font-normal px-2 py-1 rounded-3xl ${quickSand.className}`}>Lojas</div>
         </Link>
         <Link href="/categories/arte">
-          <div className={`${quickSand.className}`}>Arte</div>
+          <div className={`bg-sky-700 text-white font-normal px-2 py-1 rounded-3xl ${quickSand.className}`}>Arte</div>
         </Link>
         <Link href="/categories/restauracao">
-          <div className={`${quickSand.className}`}>Restauração</div>
+          <div className={`bg-red-700  text-white font-normal px-2 py-1 rounded-3xl ${quickSand.className}`}>Restauração</div>
         </Link>
         <Link
           href="/tags"
-          // className="border border-indigo-900 p-1 hover:bg-indigo-100 dark:border-blue-50 dark:hover:bg-indigo-900"
+          className=" p-1 rounded-3xl hover:bg-indigo-100 dark:bg-blue-50 dark:border dark:hover:bg-indigo-500"
         >
           <FilterIcon />
+        </Link>
+        <Link
+          href="/"
+          className=" p-1 rounded-3xl hover:bg-indigo-100 dark:bg-blue-50 dark:border dark:hover:bg-indigo-500"
+        >
+          <SearchIcon />
         </Link>
         <ThemeSwitch />
       </div>

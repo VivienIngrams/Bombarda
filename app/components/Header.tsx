@@ -9,7 +9,7 @@ interface Props {
 
 const Header = ({ title, tags }: Props) => {
   return (
-    <header className="py-4 my-4 mx-10 font-bold text-2xl flex flex-col items-center justify-center border-b">
+    <header className="py-4 my-4 font-bold text-2xl flex flex-col items-center justify-center border-b border-indigo-900">
       <h2>{title}{title === "Loja" && "s"}</h2>
       {/* {tags && (
         <div className="m-2 text-xl capitalize">

@@ -4,6 +4,7 @@ import { Post } from "@/app/utils/Interface";
 import { client } from "@/sanity/lib/client";
 import React from "react";
 import { notFound } from "next/navigation";
+import shuffleArray from "@/app/utils/shuffleArray";
 
 async function getPostsByTag(tags: string) {
   const query = `
@@ -36,12 +37,14 @@ const page = async ({ params }: Params) => {
   notFound();
    }
 
+   const shuffledPosts = shuffleArray(posts);
+
   return (
     <div>
       <Header title={`#${params?.slug}`} tags />
-      <div>
-        {posts?.length > 0 &&
-          posts?.map((post: Post, index) => (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {shuffledPosts?.length > 0 &&
+          shuffledPosts?.map((post: Post, index) => (
             <PostComponent key={index} post={post} />
           ))}
       </div>

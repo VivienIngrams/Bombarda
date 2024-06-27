@@ -39,33 +39,44 @@ async function getSinglePost(slug: string) {
 const Posts = async ({ params }: Params) => {
   const post: Post = await getSinglePost(params.slug);
 
-
   if (!post) {
-   notFound();
+    notFound();
   }
-console.log(post)
+  console.log(post);
+
+  let color = "-red-700";
+  if (post.category?.name === "Loja") {
+    color = "-green-700";
+  } else if (post.category?.name === "Arte") {
+    color = "-sky-700";
+  }
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <Header title="" tags  />
-      <h2 className="text-3xl font-bold text-center mt-8 mb-4">{post.title}</h2>
+      <Header title={post.title} tags />
+      {/* <h2 className="text-3xl font-bold text-center mt-8 mb-4"></h2> */}
       <div className="text-center mb-8">
         <p className="text-lg mb-4">{post?.description}</p>
-        <div className="mb-4">
-          Category:
-          <Link href={`/categories/${post?.category?.slug.current}`}>
-            <span className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">
-              #{post?.category?.name}
-            </span>
-          </Link>
+        <div className="relative m-4 mx-auto h-60 w-full rounded-xl overflow-hidden">
+         <Image
+         src="/bombarda.jpg"
+          alt="bombarda"
+          fill
+          className="object-cover"
+         />
         </div>
-        <p className="mb-4">Address: {post?.address}</p>
-        <p className="mb-4">Google map coordinates: {post?.WKT}</p>
+        <Link
+          className={`bg${color}  text-white text-xl px-2 py-1 rounded-3xl`}
+          href={`/categories/${post?.category?.slug.current}`}
+        >
+          {post?.category?.name}
+        </Link>
+        <p className="m-4">{post?.address}</p>
+        {/* <p className="mb-4">Google map coordinates: {post?.WKT}</p> */}
         <div className="mb-8">
-          <Link href="/tags">Tags:</Link>
-          {post?.tags?.map((tag: Tag) => {
+                    {post?.tags?.map((tag: Tag) => {
             return (
               <Link href={`/tags/${tag.slug.current}`} key={tag.slug.current}>
-                <span className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">
+                <span className="mr-2 py-1 px-2 rounded-xl text-sm lowercase dark:bg-indigo-950 border border-indigo-900 dark:border-indigo-900">
                   #{tag.name}
                 </span>
               </Link>

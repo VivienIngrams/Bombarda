@@ -1,20 +1,29 @@
+'use client'
 import React from "react";
 import Link from "next/link";
 import { Post } from "../utils/Interface";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 interface Props {
     post: Post;
 }
 
 const PostComponent = ({post}: Props) => {
-  console.log(post.tags);
+  const path = usePathname();
+
+  console.log(post.WKT);
+
   return (
     <div className="my-8">
       <Link href={`/posts/${post?.slug}`}>
       <h2>Title: {post?.title}</h2></Link>
         <p>Description: {post?.description}</p>
-        <Link href={`/categories/${post?.category?.slug.current}`}>Category: {post?.category?.name}</Link> 
+         {!path.startsWith('/categories') && (
+        <Link href={`/categories/${post?.category?.slug.current}`}>
+          Category: {post?.category?.name}
+        </Link>
+      )}
         <p>Address: {post?.address}</p>
         <p>Google map coordinates: {post?.WKT}</p>
         <div>

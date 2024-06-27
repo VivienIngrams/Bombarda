@@ -1,5 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+NOTES:
+Export all your documents with one request
+
+The export endpoint allows you to export all your project's documents in a dataset.
+
+To get all documents by dataset, request the following URL:
+
+https://vzs4gtg1.api.sanity.io/v2021-06-07/data/export/production/
+
+This endpoint returns a node-stream of NDJSON data. You can write this directly to a file by running this in your command-line interface:
+
+curl https://vzs4gtg1.api.sanity.io/v2021-06-07/data/export/production/ > backup.ndjson
+
+curl https://vzs4gtg1.api.sanity.io/v2021-06-07/data/export/production/?types=author,book > backup.ndjson
+
 ## Getting Started
 
 First, run the development server:

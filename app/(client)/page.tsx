@@ -31,7 +31,7 @@ export default async function Home() {
 
   return (
     <div>
-      <Header title="Bombarda Quarteirão Criativo" tags categories/>
+      <Header title="Bombarda Quarteirão Criativo" tags />
       {posts.length > 0 &&
         posts.map((post: Post, index) => (
           <PostComponent key={index} post={post}  />

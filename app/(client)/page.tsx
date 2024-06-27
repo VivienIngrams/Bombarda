@@ -5,6 +5,15 @@ import Header from "../components/Header";
 import { Post } from "../utils/Interface";
 import PostComponent from "../components/PostComponent";
 
+// Utility function to shuffle an array using the Fisher-Yates algorithm
+function shuffleArray(array: Array<any>) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 async function getPosts() {
   const query = `*[_type == "post"]{
     title,
@@ -28,11 +37,14 @@ async function getPosts() {
 
 export default async function Home() {
   const posts: Post[] = await getPosts();
+ // Shuffle the posts array
+ const shuffledPosts = shuffleArray(posts);
 
   return (
     <div>
-      <Header title="Bombarda Quarteirão Criativo" tags />
-      {posts.length > 0 &&
+      <Header title="Recomendações" tags />
+      <h2 className="text-xl">Experimenta algo novo...</h2>
+      {shuffledPosts.length > 0 &&
         posts.map((post: Post, index) => (
           <PostComponent key={index} post={post}  />
         ))}

@@ -12,7 +12,7 @@ interface Props {
 const PostComponent = ({post}: Props) => {
   const path = usePathname();
 
-  console.log(post.WKT);
+  console.log(post);
 
   return (
     <div className="my-8">
@@ -24,10 +24,9 @@ const PostComponent = ({post}: Props) => {
           Category: {post?.category?.name}
         </Link>
       )}
-        <p>Address: {post?.address}</p>
-        <p>Google map coordinates: {post?.WKT}</p>
+        {/* <p>Address: {post?.address}</p> */}
+        {/* <p>Google map coordinates: {post?.WKT}</p> */}
         <div>
-          <Link href='/tags'>Tags:</Link>
            {post?.tags?.map((tag) => {
             
           return <Link href={`/tags/${tag.slug.current}`} className="mr-2 p-1 text-small border rounded-sm border-1 " key={tag.slug.current}>#{tag.name}</Link>

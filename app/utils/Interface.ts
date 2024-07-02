@@ -2,7 +2,7 @@ export interface Post {
     title: string;
     slug: string;
     description: string;
-    mainImage?: {};
+    mainImage?: string;
     tags?: Tag[];
     category?: Category;
     body: any;

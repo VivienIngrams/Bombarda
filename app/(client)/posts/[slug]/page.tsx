@@ -14,12 +14,41 @@ interface Params {
   };
 }
 
+interface PostImages {
+  mainImage: string;
+}
+
+async function getSingleRandomPostImage() {
+  const query = `*[_type == "post" && defined(mainImage)]{
+    "mainImage": mainImage.asset->url,
+  }`;
+
+  const options = {
+    next: {
+      revalidate: 60,
+    },
+  };
+
+  const postsWithImages: PostImages[] = await client.fetch(query, {}, options);
+
+
+  // Select a random index within the range of postsWithImages array length
+  const randomIndex = Math.floor(Math.random() * postsWithImages.length);
+
+  // Get the main image URL from the randomly selected post
+  const randomMainImage = postsWithImages[randomIndex]?.mainImage || ''; // Default to empty string if no mainImage found
+
+  // Return the randomly selected main image URL
+  return randomMainImage;
+}
+
+
 async function getSinglePost(slug: string) {
   const query = `*[_type == "post" && slug.current == "${slug}"][0]{
         title,
         "slug": slug.current,
         description,
-        mainImage,
+       "mainImage" : mainImage.asset->url,
         "category": category[0]->{slug, name},
         address,
         body,
@@ -38,11 +67,28 @@ async function getSinglePost(slug: string) {
 
 const Posts = async ({ params }: Params) => {
   const post: Post = await getSinglePost(params.slug);
-
+  const randomMainImage = await getSingleRandomPostImage();
+console.log(randomMainImage);
   if (!post) {
     notFound();
   }
-  console.log(post);
+
+// A function to generate Lorem Ipsum text
+function generateLoremIpsum() {
+  return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+}
+   // Check if post.body is empty or has no text in children
+   if (!post.body || post.body.length === 0 || post.body.every((block: any) => !block.children.some((child: any) => child._type === "span" && child.text))) {
+    // If body is empty or no text found, generate Lorem Ipsum
+    post.body = [{
+      _type: "block",
+      style: "normal",
+      children: [{
+        _type: "span",
+        text: generateLoremIpsum(),
+      }],
+    }];
+  }
 
   let color = "-red-700";
   if (post.category?.name === "Loja") {
@@ -56,11 +102,11 @@ const Posts = async ({ params }: Params) => {
       {/* <h2 className="text-3xl font-bold text-center mt-8 mb-4"></h2> */}
       <div className="text-center mb-8">
         <p className="text-lg mb-4">{post?.description}</p>
-        <div className="relative m-4 mx-auto h-60 w-full rounded-xl overflow-hidden">
+        <div className="relative m-4 mx-auto h-80 w-full rounded-xl overflow-hidden">
          <Image
-         src="/bombarda.jpg"
+         src={post?.mainImage || randomMainImage}
           alt="bombarda"
-          fill
+        fill
           className="object-cover"
          />
         </div>
@@ -85,7 +131,7 @@ const Posts = async ({ params }: Params) => {
         </div>
         <div className={`${richTextStyles}`}>
           <PortableText
-            value={post?.body}
+            value={post?.body }
             components={portableTextComponents}
           />
         </div>

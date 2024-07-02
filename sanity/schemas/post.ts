@@ -29,14 +29,14 @@ export const post = {
           .required()
           .error("Excerpt is required, max 200 characters"),
     },
-    // {
-    //   name: "mainImage",
-    //   title: "Main image",
-    //   type: "image",
-    //   options: {
-    //     hotspot: true,
-    //   },
-    // },
+    {
+      name: "mainImage",
+      title: "Main image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    },
     {
       name: "address",
       title: "Address",

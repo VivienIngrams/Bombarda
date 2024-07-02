@@ -1,3 +1,4 @@
+
 export const data = [
   {
     WKT: "POINT (-8.62324 41.1494148)",

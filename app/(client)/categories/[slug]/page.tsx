@@ -12,6 +12,7 @@ async function getPostsByCategory(category: string) {
     title,
     "category": category[0]->{slug, name},
    "slug": slug.current,
+   "mainImage" : mainImage.asset->url,
    address,
     description,
    tags[]->{slug,name},
@@ -29,10 +30,24 @@ interface Params {
     slug: string;
   };
 }
+async function getRandomPostImages() {
+  const query = `*[_type == "post" && defined(mainImage)]{
+    "mainImage": mainImage.asset->url,
+  }`;
+
+  const options = {
+    next: {
+      revalidate: 60,
+    },
+  };
+  const postsWithImages = await client.fetch(query, {}, options);
+  return postsWithImages;
+}
+
 
 const page = async ({ params }: Params) => {
   const posts: Array<Post> = await getPostsByCategory(params.slug);
-
+const randomImages = await getRandomPostImages();
   if (!posts) {
     notFound();
   }
@@ -46,7 +61,7 @@ const page = async ({ params }: Params) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {shuffledPosts.length > 0 &&
                       shuffledPosts?.map((post: Post, index) => (
-              <PostComponent key={index} post={post} />
+              <PostComponent key={index} post={post} randomImages={randomImages}/>
             ))}
         </div>
       </div>

@@ -11,7 +11,7 @@ async function getPosts() {
     title,
     "slug": slug.current,
     description,
-    mainImage,
+    "mainImage" : mainImage.asset->url,
     "category": category[0]->{slug,name},
     address,
     WKT,
@@ -27,8 +27,26 @@ async function getPosts() {
   return posts;
 }
 
+async function getRandomPostImages() {
+  const query = `*[_type == "post" && defined(mainImage)]{
+    "mainImage": mainImage.asset->url,
+  }`;
+
+  const options = {
+    next: {
+      revalidate: 60,
+    },
+  };
+  const postsWithImages = await client.fetch(query, {}, options);
+  return postsWithImages;
+}
+
+
+
 export default async function Home() {
   const posts: Post[] = await getPosts();
+  const randomImages = await getRandomPostImages();
+
  // Shuffle the posts array
  const shuffledPosts = shuffleArray(posts);
 
@@ -39,7 +57,7 @@ export default async function Home() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {shuffledPosts.length > 0 &&
         posts.map((post: Post, index) => (
-          <PostComponent key={index} post={post}  />
+          <PostComponent key={index} post={post} randomImages={randomImages} />
         ))}
         </div>
     </div>

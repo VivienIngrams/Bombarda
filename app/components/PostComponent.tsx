@@ -5,12 +5,24 @@ import { Post } from "../utils/Interface";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-interface Props {
-  post: Post;
+interface ImagePost {
+  mainImage: string;
 }
 
-const PostComponent = ({ post }: Props) => {
+interface Props {
+  post: Post;
+  randomImages?: ImagePost[];
+}
+
+const PostComponent = ({ post, randomImages }: Props) => {
   const path = usePathname();
+  const randomIndex = Math.floor(Math.random() * (randomImages?.length ?? 0));
+
+  // Get the random image object or default to an empty object
+  const randomImage = randomImages?.[randomIndex] || { mainImage: '' };
+
+  // Destructure the mainImage from randomImage object
+  const { mainImage } = randomImage;
 
   let color = "-red-700";
   if (post.category?.name === "Loja") {
@@ -25,7 +37,7 @@ const PostComponent = ({ post }: Props) => {
         <div className="relative h-60 w-full rounded-xl overflow-hidden">
         {/* //   className={`h-60 w-full ${color}  bg-white rounded-xl flex items-center justify-center`} */}
          <Image
-         src="/bombarda.jpg"
+         src={post?.mainImage || mainImage}
           alt="bombarda"
           fill
           className="object-cover"

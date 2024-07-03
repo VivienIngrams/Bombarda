@@ -52,10 +52,11 @@ const page = async ({ params }: Params) => {
    }
 
    const shuffledPosts = shuffleArray(posts);
+   const tagName = posts[0]?.tags?.find(tag => tag.slug.current === params.slug)?.name || "";
 
   return (
     <div>
-      <Header title={`#${params?.slug}`} tags />
+      <Header title={`#${tagName}`} tags />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {shuffledPosts?.length > 0 &&
           shuffledPosts?.map((post: Post, index) => (

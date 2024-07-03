@@ -14,7 +14,7 @@ const ThemeSwitch = () => {
 
   if (!mounted) return null;
 
-  return <button className="border rounded-2xl border-indigo-900 p-1 hover:bg-indigo-100 dark:border-blue-50 dark:hover:bg-indigo-900" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+  return <button className="hidden md:block border rounded-2xl border-indigo-900 p-1 hover:bg-indigo-100 dark:border-blue-50 dark:hover:bg-indigo-900" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
     {theme === 'dark' ? <SunIcon/> : <MoonIcon/>}
   </button>;
 };

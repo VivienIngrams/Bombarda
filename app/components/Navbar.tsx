@@ -12,10 +12,10 @@ const quickSand = Quicksand({
 const Navbar = () => {
   return (
     <div className="mx-auto max-w-5xl px-6">
-      <div className="flex justify-between items-center h-16 w-full font-bold">
+      <div className="text-xs md:text-lg flex justify-between items-center h-16 w-full font-bold">
         <Link href="/">
-          <div className={`${quickSand.className}`}>
-            BOMBARDA QUARTEIRÃO CRIATIVO
+          <div className={`${quickSand.className} `}>
+            BOMBARDA <span className="hidden md:block">QUARTEIRÃO CRIATIVO</span> 
           </div>
         </Link>
         <Link href="/categories/loja">
@@ -33,12 +33,12 @@ const Navbar = () => {
         >
           <FilterIcon />
         </Link>
-        <Link
+        {/* <Link
           href="/"
           className=" p-1 rounded-3xl hover:bg-indigo-100 dark:bg-blue-50 dark:border dark:hover:bg-indigo-500"
-        >
-          <SearchIcon />
-        </Link>
+        > */}
+          {/* <SearchIcon /> */}
+        {/* </Link> */}
         <ThemeSwitch />
       </div>
     </div>
